@@ -1,24 +1,48 @@
-class Conta:
-    estatico = 0
-    def __init__(self,titular):
-        """cria objeto, titular nome do dono e extrato """
-        self.__titular = titular
-        self.__extrato = 100
-        Conta.estatico+=1
-    
 
+class conta_mae:
+    estatico = 0
+    def __init__(self,agencia):
+        self._extrato = 100
+        conta_mae.estatico+=1
+        self.codigo_banco = "529"
+        self.bloqueio = 0
+        self._agencia = agencia
+    
+class conta_regional:
+    cidade = "campinas"
+
+
+
+class Conta(conta_mae,conta_regional):
+    def __init__(self,titular,agencia):
+        super().__init__(agencia)
+        """cria objeto, titular nome do dono e extrato """
+        self._titular = titular
+
+    def gcidade(self):
+        return self.cidade
+
+
+    @property
+    def gtitular(self):
+        return self._titular
+    @property
+    def gagencia(self):
+        return self._agencia
+    
+    @classmethod
     def ola(self,valor):
         self.count = valor
         return self.count
 
     @property #property deixa acessar o atributo como antes , o publico, metodo se escode como propriedade ?
     def extrato(self):
-        return self.__extrato
+        return self._extrato
    
     @extrato.setter
     def extrato(self,value):
         print("setter")
-        self.__extrato = value
+        self._extrato = value
 
     @staticmethod
     def codigo():
@@ -27,10 +51,10 @@ class Conta:
     
 
 
-    def __saque_ok(func):
+    def _saque_ok(func):
         def innercheck(self,valor):
 
-            if (self.__extrato >= valor):
+            if (self._extrato >= valor):
                 return func(self,valor)
             else:
                 print("Impossivel")
@@ -39,23 +63,26 @@ class Conta:
         return innercheck    
     
    
-    @__saque_ok
+    @_saque_ok
     def saca(self,valor):
-        self.__extrato -= valor
+        self._extrato -= valor
         print("saque feito")
   
     def deposito(self,valor):
-        self.__extrato += valor
+        self._extrato += valor
 
 
     def transfere(self,valor,conta_destino):
         self.saca(valor);
         conta_destino.deposito(valor);
 
+
+
+
 def main():
     print(Conta.codigo())
-    conta1 = Conta("Corto")
-    conta2 = Conta("Case")
+    conta1 = Conta("Corto","222-222")
+    conta2 = Conta("Case","333-333")
     print(conta1.extrato)
     conta1.deposito(10)
     conta1.saca(50)
@@ -68,8 +95,11 @@ def main():
     conta1.count
     conta1.saca(10000)
     print(conta1.estatico)
+    print(conta1.gagencia)
+    print(conta1.gtitular)
     print(conta2.estatico)
-    print(Conta.estatico)
+    print(conta1.gcidade())
+
 if __name__ == '__main__':
     main()
 
