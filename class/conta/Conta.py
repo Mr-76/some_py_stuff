@@ -13,11 +13,17 @@ class conta_regional:
 
 
 
-class Conta(conta_mae,conta_regional):
+class Conta(conta_mae,conta_regional): #herdando classes 
+    conta_conta = 0 
     def __init__(self,titular,agencia):
         super().__init__(agencia)
         """cria objeto, titular nome do dono e extrato """
         self._titular = titular
+        Conta.conta_conta+=1 #variael estatica da classe
+    
+    @classmethod
+    def get_contas(cls):
+        print("Numero de contas instanciadas {}".format(cls.conta_conta))
 
     def gcidade(self):
         return self.cidade
@@ -99,7 +105,7 @@ def main():
     print(conta1.gtitular)
     print(conta2.estatico)
     print(conta1.gcidade())
-
+    Conta.get_contas()
 if __name__ == '__main__':
     main()
 
