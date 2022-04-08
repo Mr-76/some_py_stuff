@@ -1,17 +1,27 @@
-class InfoPessoa:
-    def __init__(chapolin,cpf,nome):
+#multipla chadama classe >:
+
+
+class Loja:
+    def __init__(chapolin,cnpj):
+        chapolin._cnpj_loja = cnpj
+
+
+
+
+
+class InfoPessoa(Loja):
+    def __init__(chapolin,cpf,nome,cnpj):
+        super().__init__(cnpj)
         chapolin._cpf = cpf
         chapolin._nome = nome
 
 
 
-
 class NotaFiscal(InfoPessoa):
     def __init__(chapolin,cpf,nome,valor,cnpj_loja,itens):
-        super().__init__(nome,cpf)
+        super().__init__(nome,cpf,cnpj_loja)
         chapolin.itens = itens
         chapolin._valor = valor
-        chapolin._cnpj_loja = cnpj_loja
         chapolin._itens = itens
 
 
