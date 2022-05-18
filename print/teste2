@@ -1,0 +1,18 @@
+import time
+import sys
+
+def timer(t=5):
+    print("\n")
+    for i in range(100):
+        sys.stdout.write("\r{}".format(str(i)))
+        time.sleep(0.1)
+#    while now-t0 < t:
+#        now = time.time()
+#        timestr = '%%%i\r' %(100*(now-t0)/t)
+#        sys.stdout.write(timestr)
+#        sys.stdout.flush()
+#        time.sleep(0.1)
+#
+timer()
+#for i in range(10):
+#    print("\t{}".format(i))

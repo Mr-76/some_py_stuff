@@ -11,11 +11,13 @@ class Carro:
         self.__marchas = marchas
         self.__modelo = modelo
     
-    def GetValores(self):
+    def __GetValores(self):
         return print("{}\n{}\n{}\n{}\n{}".format(self.__marca,self.__ano,self.__modelo,self.__marchas,self.__ano))
 
 
 HB20 = Carro("Hyundai",2020,"Branco",6,"sport")
 
-HB20.GetValores()
+HB20._Carro__GetValores()
+
+
 
