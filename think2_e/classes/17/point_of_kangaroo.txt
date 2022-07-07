@@ -1,0 +1,1 @@
+using a list on the object default value on init shares the lsit across the diff objects of the same tpe >()
